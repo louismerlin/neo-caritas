@@ -2,14 +2,20 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Hello World</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <title>Neo Caritas</title>
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
   </head>
   <body>
     <div id="root"></div>
-    <script src="./App.js" type="text/babel"></script>
+    <script src="./src/Navbar.js" type="text/babel"></script>
+    <script src="./src/Landing.js" type="text/babel"></script>
+    <script src="./src/Deploy.js" type="text/babel"></script>
+    <script src="./src/Donate.js" type="text/babel"></script>
+    <script src="./src/App.js" type="text/babel"></script>
     <script type="text/babel">
 
       ReactDOM.render(
@@ -18,6 +24,11 @@
       );
 
     </script>
+    <style>
+      .container {
+        max-width: 600px;
+      }
+    </style>
     <!--
       Note: this page is a great way to try React but it's not suitable for production.
       It slowly compiles JSX with Babel in the browser and uses a large development build of React.
