@@ -1,3 +1,5 @@
+const NGO_ADDRESS = "ANU44juAN2GkmRTEWTu25Jx5umxEhnctB4"
+
 const hex2a = (hexx) => {
     var hex = hexx.toString();
     var str = '';
@@ -12,9 +14,11 @@ class App extends React.Component {
     super(props)
     this.state = {
       route: 0,
-      block: '...'
+      block: '...',
+      balance: 0
     }
     this.syncBlockchain = this.syncBlockchain.bind(this)
+    this.syncContracts = this.syncContracts.bind(this)
     this.goToLanding = this.goToLanding.bind(this)
     this.goToDeploy = this.goToDeploy.bind(this)
     this.goToDonate= this.goToDonate.bind(this)
@@ -32,17 +36,17 @@ class App extends React.Component {
 
   componentDidMount() {
     this.syncBlockchain()
-    window.setInterval(this.syncBlockchain, 0.2*1000)
+    window.setInterval(this.syncBlockchain, 1*1000)
   }
 
-  syncBlockchain() {
-    var request = new XMLHttpRequest();
-    request.open('POST', 'http://130.82.239.151:30336', true);
-    request.setRequestHeader("Content-type", "application/json");
+  createRequest(url, type, onLoad, data) {
+    const request = new XMLHttpRequest()
+    request.open(type, url, true)
+    request.setRequestHeader("Content-type", "application/json")
     request.onload = () => {
       if (request.status >= 200 && request.status < 400) {
         const res = JSON.parse(request.responseText)
-        this.setState({block: res.result})
+        onLoad(res)
       } else {
         console.log("Server error : " + request.responseText)
       }
@@ -50,7 +54,27 @@ class App extends React.Component {
     request.onerror = () => {
       console.log("Connction Error !")
     }
-    request.send(JSON.stringify({"jsonrpc": "2.0","method": "getblockcount","params": [],"id": 1}));
+    request.send(JSON.stringify(data))
+  }
+
+  syncBlockchain() {
+    this.createRequest('http://130.82.239.151:30336', 'POST', res => {
+      this.setState((prevState, props) => {
+        if (prevState.block != res.result) {
+          this.syncContracts()
+          return {block: res.result}
+        }
+      })
+    }, {"jsonrpc": "2.0","method": "getblockcount","params": [],"id": 1})
+  }
+
+  syncContracts() {
+    this.createRequest(
+      'http://130.82.239.151:4000/api/main_net/v1/get_balance/' + NGO_ADDRESS,
+      'GET',
+      res => {
+        this.setState({balance: res.balance[0].amount || 0})
+    }, {})
   }
 
   render() {
@@ -63,7 +87,7 @@ class App extends React.Component {
       body = <Deploy key={1} />
     }
     if (this.state.route == 2) {
-      body = <Donate key={1} />
+      body = <Donate key={1} balance={this.state.balance} />
     }
 
     return (

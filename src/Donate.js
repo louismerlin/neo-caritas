@@ -16,32 +16,57 @@ Goodwill Children's Homes is a registered UK charity that works with our partner
       address: 'ANU44juAN2GkmRTEWTu25Jx5umxEhnctB4',
       hold: 1000000
     }
+    this.computeDailyGas = this.computeDailyGas.bind(this)
+    this.computeDailyUSD = this.computeDailyUSD.bind(this)
   }
+
+  qr() {
+    return "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + this.state.address
+  }
+
+  computeDailyGas() {
+    return Math.floor((this.props.balance * 0.00026937)*100)/100
+  }
+  computeDailyUSD() {
+    return Math.floor((this.props.balance * 0.00026937 * 36.91)*100)/100
+  }
+
   render() {
+    const overflow = {
+      overflow: 'auto'
+    }
     return (
-      <div className="container">
-        <div className="card">
-          <div className="card-image">
-          <figure class="image">
-            <a href={this.state.url}>
-              <img src={this.state.logo} alt={this.state.name} />
-            </a>
-          </figure>
-          </div>
-          <div className="card-content content">
-            <h1>{this.state.name}</h1>
-            <p><b><a href={this.state.url}>{this.state.name}</a></b> is collecting funds in NEO to get a steady income of GAS over a period of <b>{this.state.hold}</b> blocks before your can claim back your NEO.</p>
-            <h2>About Us</h2>
-            <p>{this.state.description}</p>
-            <h2>Giving Address</h2>
-            <article className="message is-success">
-              <div className="message-body">
-                {this.state.address}
-              </div>
-            </article>
+      <section className="section">
+        <div className="container">
+          <div className="card">
+            <div className="card-image">
+            <figure className="image">
+              <a href={this.state.url}>
+                <img src={this.state.logo} alt={this.state.name} />
+              </a>
+            </figure>
+            </div>
+            <div className="card-content content">
+              <h1>{this.state.name}</h1>
+              <p><b><a href={this.state.url}>{this.state.name}</a></b> is collecting funds in NEO to gather a steady income of GAS over a period of <b>{this.state.hold}</b> blocks before the contract releases the funds.</p>
+              <h2>About Us</h2>
+              <p>{this.state.description}</p>
+              <h2>Giving</h2>
+              <article className="message is-success">
+                <div className="message-header" style={overflow}>
+                  {this.state.address}
+                </div>
+                <div className="message-body">
+                  <figure>
+                    <img src={this.qr()}/>
+                  </figure>
+                </div>
+              </article>
+              <h5>Already {this.props.balance} NEO given, which gives {this.computeDailyGas()} GAS ({this.computeDailyUSD()} USD) daily to the organization.</h5>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     )
   }
 }

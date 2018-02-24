@@ -21,54 +21,51 @@ Goodwill Children's Homes is a registered UK charity that works with our partner
 
   render () {
     return (
-      <div className="container">
-        <div className="field">
-          <label className="label">Organization Name</label>
-          <div className="control">
-            <input className="input" type="text" value={this.state.name}/>
+      <section className="section">
+        <div className="container">
+          <div className="field">
+            <label className="label">Organization Name</label>
+            <div className="control">
+              <input className="input" type="text" value={this.state.name}/>
+            </div>
           </div>
-        </div>
 
-        <div className="field">
-          <label className="label">Website URL</label>
-          <div className="control">
-            <input className="input" type="text" value={this.state.url}/>
+          <div className="field">
+            <label className="label">Website URL</label>
+            <div className="control">
+              <input className="input" type="text" value={this.state.url}/>
+            </div>
           </div>
-        </div>
 
-        <div className="field">
-          <label className="label">Organization Logo</label>
-          <div className="control">
-            <input className="input" type="text"
-            onChange={this.handleLogoChange} value={this.state.logo} />
+          <div className="field">
+            <label className="label">Organization Logo</label>
+            <div className="control">
+              <input className="input" type="text"
+              onChange={this.handleLogoChange} value={this.state.logo} />
+            </div>
+            <figure className="image box">
+              <img src={this.state.logo} />
+            </figure>
           </div>
-          <figure className="image box">
-            <img src={this.state.logo} />
-          </figure>
-        </div>
 
-        <div className="field">
-          <label className="label">NGO Description</label>
-          <div className="control">
-            <textarea className="textarea" placeholder="Textarea"
-                      value={this.state.description}>
-            </textarea>
+          <div className="field">
+            <label className="label">NGO Description</label>
+            <div className="control">
+              <textarea className="textarea" placeholder="Textarea"
+                        value={this.state.description}>
+              </textarea>
+            </div>
           </div>
-        </div>
 
-        <div className="field">
-          <label className="label">NEO Holding Time (Blocks)</label>
-          <div className="control">
-            <input className="input" type="number" value={this.state.hold}/>
+          <div className="field">
+            <label className="label">NEO Holding Time (Blocks)</label>
+            <div className="control">
+              <input className="input" type="number" value={this.state.hold}/>
+            </div>
           </div>
-        </div>
 
-        <div className="message">
-          <div className="message-body">
-            import contract /path/to/avm 10 05 True False
-          </div>
         </div>
-      </div>
+      </section>
     )
   }
 }
