@@ -36,10 +36,10 @@ Goodwill Children's Homes is a registered UK charity that works with our partner
   }
 
   generateConstants() {
-    return 'NGO_DESCRIPTION = {"name": "' + this.state.name + '", "url": "'
+    return 'NGO_DESCRIPTION = \'{"name": "' + this.state.name + '", "url": "'
             + this.state.url + '", "logo": "' + this.state.logo
             + '", "description": "' + this.state.description + '", "hold": '
-            + this.state.hold + ' }\nNGO_HOLD = ' + this.state.hold
+            + this.state.hold + ' }\'\nNGO_HOLD = ' + this.state.hold
   }
 
   render () {
