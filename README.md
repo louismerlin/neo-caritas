@@ -19,6 +19,8 @@ south India (Tamil Nadu)
 
 Please have a look at their work
 
+![Goodwill Children's Homes](http://www.goodwillhomes.org.uk/images/goodwill.png)
+
 ## How
 
 ### Blockchain
