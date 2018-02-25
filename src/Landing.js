@@ -3,7 +3,7 @@ const Landing = props => (
     <div className="hero-body">
       <div className="container has-text-centered">
 
-        <h1 className="title is-1">Neo Caritas</h1>
+        <h1 className="title is-1 main-title">Neo Caritas</h1>
         <h3 className="subtitle is-3 has-text-success">Give, reliably</h3>
 
         <div className="columns is-centered">

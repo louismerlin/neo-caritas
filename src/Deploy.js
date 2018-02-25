@@ -35,8 +35,14 @@ Goodwill Children's Homes is a registered UK charity that works with our partner
     this.setState({hold: event.target.value})
   }
 
+  generateConstants() {
+    return 'NGO_DESCRIPTION = {"name": "' + this.state.name + '", "url": "'
+            + this.state.url + '", "logo": "' + this.state.logo
+            + '", "description": "' + this.state.description + '", "hold": '
+            + this.state.hold + ' }\nNGO_HOLD = ' + this.state.hold
+  }
+
   render () {
-    console.log(this.props.unclaimed)
     return (
       <section className="section">
         <div className="container">
@@ -86,21 +92,36 @@ Goodwill Children's Homes is a registered UK charity that works with our partner
             </div>
           </div>
 
-          <div className="field is-grouped">
+          <div className="field">
+            <label className="label is-3">Output : Smart Contract Constants</label>
             <div className="control">
-              <button className="button is-link" disabled>Deploy</button>
+              <textarea className="textarea"
+                      value={this.generateConstants()} readOnly />
             </div>
           </div>
 
           <br/>
 
           <div className="box">
+            <h5 className="title is-3">
+              Output : Smart Contract Constants
+            </h5>
+            <article className="message is-primary">
+              <div className="message-body">
+                {this.generateConstants()}
+              </div>
+            </article>
+          </div>
+
+          <br/>
+
+          <div className="box">
             <h5 className="title is-5">
-              You have {this.props.unclaimed} unclaimed GAS
+              You have {this.props.unclaimed} unclaimed GAS, and {this.props.gas} claimed GAS
             </h5>
             <article className="message is-success">
               <div className="message-body">
-                claim prompt message
+                claim wallet --from-addr={NGO_CONTRACT}
               </div>
             </article>
           </div>

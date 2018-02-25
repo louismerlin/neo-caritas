@@ -16,6 +16,9 @@ OWNER = b'\x41\x58\x33\x7a\x76\x5a\x76\x45\x50\x58\x31\x75\x4d\x69\x6b\x45\x68\x
 NEO_ASSET_ID = b'\x9b|\xff\xda\xa6t\xbe\xae\x0f\x93\x0e\xbe`\x85\xaf\x90\x93\xe5\xfeV\xb3J\\"\x0c\xcd\xcfn\xfc3o\xc5'
 GAS_ASSET_ID = b'\x36\x30\x32\x63\x37\x39\x37\x31\x38\x62\x31\x36\x65\x34\x34\x32\x64\x65\x35\x38\x37\x37\x38\x65\x31\x34\x38\x64\x30\x62\x31\x30\x38\x34\x65\x33\x62\x32\x64\x66\x66\x64\x35\x64\x65\x36\x62\x37\x62\x31\x36\x63\x65\x65\x37\x39\x36\x39\x32\x38\x32\x64\x65\x37'
 
+NGO_DESCRIPTION = '{"name": "Goodwill Children\'s Homes", "url": "http://www.goodwillhomes.org.uk/", "logo": "http://www.goodwillhomes.org.uk/images/goodwill.png", "description": "Goodwill Children\'s Homes (UK) funds 3 children\'s homes, a primary school and a Tribal Outreach programme (TORP) in Tamil Nadu, south India to give destitute children an opportunity for a brighter future. Goodwill Children\'s Homes is a registered UK charity that works with our partner Society registered in South India as \'Goodwill Children\'s Homes Charitable Society\'. We provide a loving home and a meaningful education to many destitute children. Most Goodwill children come from the tribal communities living in the mountain ranges of the Palani Hills. We look after children who have either been orphaned or come from families that are simply too poor to provide essential shelter, food and education. Goodwill is able to provide them with the life-chances that their families cannot.", "hold": 1000000 }'
+NGO_HOLD = 1000000
+
 def Main(args):
 
     print("Do Withdraw Test")
@@ -58,8 +61,7 @@ def Main(args):
     return False
 
 def Description():
-    info = '{"name": "Goodwill Children\'s Homes", "url": "http://www.goodwillhomes.org.uk/", "logo": "http://www.goodwillhomes.org.uk/images/goodwill.png", "description": "Goodwill Children\'s Homes (UK) funds 3 children\'s homes, a primary school and a Tribal Outreach programme (TORP) in Tamil Nadu, south India to give destitute children an opportunity for a brighter future. Goodwill Children\'s Homes is a registered UK charity that works with our partner Society registered in South India as \'Goodwill Children\'s Homes Charitable Society\'. We provide a loving home and a meaningful education to many destitute children. Most Goodwill children come from the tribal communities living in the mountain ranges of the Palani Hills. We look after children who have either been orphaned or come from families that are simply too poor to provide essential shelter, food and education. Goodwill is able to provide them with the life-chances that their families cannot.", "hold": 1000000 }'
-    return info
+    return NGO_DESCRIPTION
 
 def DepositNeo():
     # get reference to the tx the invocation is in

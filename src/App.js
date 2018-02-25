@@ -1,4 +1,4 @@
-const NGO_ADDRESS = "ANU44juAN2GkmRTEWTu25Jx5umxEhnctB4"
+const CONTRACT_ADDRESS = "AMijAsUe25iiU3e1UcpqEBB3awknaXBP4R"
 const NGO_CONTRACT = "0xa89788d15f35efc7a15765113c2776ac5e6e3841"
 const MY_IP = "130.82.239.151"
 
@@ -18,7 +18,8 @@ class App extends React.Component {
       route: 0,
       block: '...',
       balance: 0,
-      unclaimed: 0
+      unclaimed: 0,
+      gas: 0
     }
     this.syncBlockchain = this.syncBlockchain.bind(this)
     this.syncContracts = this.syncContracts.bind(this)
@@ -89,12 +90,29 @@ class App extends React.Component {
   }
 
   syncContracts() {
+
     this.createRequest(
-      this.ip(4000) + '/api/main_net/v1/get_balance/' + NGO_ADDRESS,
+      this.ip(4000) + '/api/main_net/v1/get_balance/' + CONTRACT_ADDRESS,
       'GET',
       res => {
-        this.setState({balance: res.balance[0].amount || 0})
+        var gas, neo
+        if (res.balance[0].asset == "GAS") {
+          gas = res.balance[0].amount
+          neo = res.balance[1].amount
+        } else {
+          gas = res.balance[1].amount
+          neo = res.balance[0].amount
+        }
+        this.setState({balance: neo || 0, gas: gas})
     }, {})
+
+    this.createRequest(
+      this.ip(4000) + '/api/main_net/v1/get_unclaimed/' + CONTRACT_ADDRESS,
+      'GET',
+      res => {
+        this.setState({unclaimed: res.unclaimed || 0})
+    }, {})
+
   }
 
   render() {
@@ -104,7 +122,7 @@ class App extends React.Component {
       body = <Landing key={1} deploy={this.goToDeploy} donate={this.goToDonate} />
     }
     if (this.state.route == 1) {
-      body = <Deploy key={1} unclaimed={this.state.unclaimed} />
+      body = <Deploy key={1} unclaimed={this.state.unclaimed} gas={this.state.gas} />
     }
     if (this.state.route == 2) {
       body = <Donate key={1} ngo={this.state.ngo} balance={this.state.balance} />

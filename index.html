@@ -33,9 +33,21 @@
           opacity: 1;
         }
       }
+      @keyframes bigIn {
+        from {
+          font-size: 5rem;
+        }
+      }
+      .main-title {
+        animation: bigIn 1s;
+        animation-timing-function: cubic-bezier();
+      }
       .container {
         max-width: 600px;
-        animation: fadeIn 0.5s;
+        animation: fadeIn 1s;
+      }
+      .overflow {
+        overflow: auto;
       }
     </style>
     <!--

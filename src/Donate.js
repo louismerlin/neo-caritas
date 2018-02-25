@@ -7,15 +7,10 @@ class Donate extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      address: 'ANU44juAN2GkmRTEWTu25Jx5umxEhnctB4'
-    }
+    this.state = {}
+
     this.computeDailyGas = this.computeDailyGas.bind(this)
     this.computeDailyUSD = this.computeDailyUSD.bind(this)
-  }
-
-  qr() {
-    return "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + this.state.address
   }
 
   computeDailyGas() {
@@ -26,9 +21,6 @@ class Donate extends React.Component {
   }
 
   render() {
-    const overflow = {
-      overflow: 'auto'
-    }
     return (
       <section className="section">
         <div className="container">
@@ -41,19 +33,14 @@ class Donate extends React.Component {
             </figure>
             </div>
             <div className="card-content content">
-              <h1>{this.state.name}</h1>
+              <h1>{this.props.ngo.name}</h1>
               <p><b><a href={this.props.ngo.url}>{this.props.ngo.name}</a></b> is collecting funds in NEO to gather a steady income of GAS over a period of <b>{this.state.hold}</b> blocks before the contract releases the funds.</p>
               <h2>About Us</h2>
               <p>{this.props.ngo.description}</p>
               <h2>Giving</h2>
               <article className="message is-success">
-                <div className="message-header" style={overflow}>
-                  {this.state.address}
-                </div>
-                <div className="message-body">
-                  <figure>
-                    <img src={this.qr()}/>
-                  </figure>
+                <div className="message-header overflow">
+                  testinvoke {NGO_CONTRACT} ["hodl"] --attach-neo=AMOUNT
                 </div>
               </article>
               <h5>Already {this.props.balance} NEO given, which gives {this.computeDailyGas()} GAS ({this.computeDailyUSD()} USD) daily to the organization.</h5>
