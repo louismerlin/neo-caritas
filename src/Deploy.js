@@ -12,11 +12,27 @@ Goodwill Children's Homes is a registered UK charity that works with our partner
       hold: 1000000
     }
 
+    this.handleNameChange = this.handleNameChange.bind(this)
     this.handleLogoChange = this.handleLogoChange.bind(this)
+    this.handleUrlChange = this.handleUrlChange.bind(this)
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this)
+    this.handleHoldChange = this.handleHoldChange.bind(this)
   }
 
+  handleNameChange(event) {
+    this.setState({name: event.target.value})
+  }
   handleLogoChange(event) {
-    this.setState({logo: event.target.value});
+    this.setState({logo: event.target.value})
+  }
+  handleUrlChange(event) {
+    this.setState({url: event.target.value})
+  }
+  handleDescriptionChange(event) {
+    this.setState({description: event.target.value})
+  }
+  handleHoldChange(event) {
+    this.setState({hold: event.target.value})
   }
 
   render () {
@@ -26,14 +42,16 @@ Goodwill Children's Homes is a registered UK charity that works with our partner
           <div className="field">
             <label className="label">Organization Name</label>
             <div className="control">
-              <input className="input" type="text" value={this.state.name}/>
+              <input className="input" type="text"
+                     onChange={this.handleNameChange} value={this.state.name}/>
             </div>
           </div>
 
           <div className="field">
             <label className="label">Website URL</label>
             <div className="control">
-              <input className="input" type="text" value={this.state.url}/>
+              <input className="input" type="text"
+                     onChange={this.handleUrlChange} value={this.state.url}/>
             </div>
           </div>
 
@@ -41,7 +59,8 @@ Goodwill Children's Homes is a registered UK charity that works with our partner
             <label className="label">Organization Logo</label>
             <div className="control">
               <input className="input" type="text"
-              onChange={this.handleLogoChange} value={this.state.logo} />
+                     onChange={this.handleLogoChange}
+                     defaultValue={this.state.logo} />
             </div>
             <figure className="image box">
               <img src={this.state.logo} />
@@ -52,6 +71,7 @@ Goodwill Children's Homes is a registered UK charity that works with our partner
             <label className="label">NGO Description</label>
             <div className="control">
               <textarea className="textarea" placeholder="Textarea"
+                        onChange={this.handleDescriptionChange}
                         value={this.state.description}>
               </textarea>
             </div>
@@ -60,7 +80,8 @@ Goodwill Children's Homes is a registered UK charity that works with our partner
           <div className="field">
             <label className="label">NEO Holding Time (Blocks)</label>
             <div className="control">
-              <input className="input" type="number" value={this.state.hold}/>
+              <input className="input" type="number"
+                     onChange={this.handleHoldChange} value={this.state.hold}/>
             </div>
           </div>
 
