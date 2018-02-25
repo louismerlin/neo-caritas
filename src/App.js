@@ -1,4 +1,5 @@
 const NGO_ADDRESS = "ANU44juAN2GkmRTEWTu25Jx5umxEhnctB4"
+const MY_IP = "130.82.239.151"
 
 const hex2a = (hexx) => {
     var hex = hexx.toString();
@@ -39,6 +40,10 @@ class App extends React.Component {
     window.setInterval(this.syncBlockchain, 1*1000)
   }
 
+  ip(port) {
+    return 'http://' + MY_IP + ':' + port
+  }
+
   createRequest(url, type, onLoad, data) {
     const request = new XMLHttpRequest()
     request.open(type, url, true)
@@ -58,7 +63,7 @@ class App extends React.Component {
   }
 
   syncBlockchain() {
-    this.createRequest('http://130.82.239.151:30336', 'POST', res => {
+    this.createRequest(this.ip(30336), 'POST', res => {
       this.setState((prevState, props) => {
         if (prevState.block != res.result) {
           this.syncContracts()
@@ -70,7 +75,7 @@ class App extends React.Component {
 
   syncContracts() {
     this.createRequest(
-      'http://130.82.239.151:4000/api/main_net/v1/get_balance/' + NGO_ADDRESS,
+      this.ip(4000) + '/api/main_net/v1/get_balance/' + NGO_ADDRESS,
       'GET',
       res => {
         this.setState({balance: res.balance[0].amount || 0})
