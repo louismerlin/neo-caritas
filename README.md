@@ -36,6 +36,8 @@ Frontend built with [React](https://reactjs.org/) and
 
 Just open or serve the index.html and you're set :sunglasses:
 
+You'll also need to change the hardcoded constants in `App.js` :innocent:
+
 ## Who
 
  - [Leonardo Aoun](https://github.com/aounleonardo)
