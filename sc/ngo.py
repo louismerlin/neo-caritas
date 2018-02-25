@@ -18,6 +18,9 @@ OWNER = b'\x30\x33\x33\x31\x34\x37\x33\x63\x37\x64\x32\x34\x65\x32\x36\x64\x62\x
 NEO_ASSET_ID = b'\x63\x35\x36\x66\x33\x33\x66\x63\x36\x65\x63\x66\x63\x64\x30\x63\x32\x32\x35\x63\x34\x61\x62\x33\x35\x36\x66\x65\x65\x35\x39\x33\x39\x30\x61\x66\x38\x35\x36\x30\x62\x65\x30\x65\x39\x33\x30\x66\x61\x65\x62\x65\x37\x34\x61\x36\x64\x61\x66\x66\x37\x63\x39\x62'
 GAS_ASSET_ID = b'\x36\x30\x32\x63\x37\x39\x37\x31\x38\x62\x31\x36\x65\x34\x34\x32\x64\x65\x35\x38\x37\x37\x38\x65\x31\x34\x38\x64\x30\x62\x31\x30\x38\x34\x65\x33\x62\x32\x64\x66\x66\x64\x35\x64\x65\x36\x62\x37\x62\x31\x36\x63\x65\x65\x37\x39\x36\x39\x32\x38\x32\x64\x65\x37'
 
+NGO_DESCRIPTION = '{"name": "Goodwill Children\'s Homes", "url": "http://www.goodwillhomes.org.uk/", "logo": "http://www.goodwillhomes.org.uk/images/goodwill.png", "description": "Goodwill Children\'s Homes (UK) funds 3 children\'s homes, a primary school and a Tribal Outreach programme (TORP) in Tamil Nadu, south India to give destitute children an opportunity for a brighter future. Goodwill Children\'s Homes is a registered UK charity that works with our partner Society registered in South India as \'Goodwill Children\'s Homes Charitable Society\'. We provide a loving home and a meaningful education to many destitute children. Most Goodwill children come from the tribal communities living in the mountain ranges of the Palani Hills. We look after children who have either been orphaned or come from families that are simply too poor to provide essential shelter, food and education. Goodwill is able to provide them with the life-chances that their families cannot.", "hold": 1000000 }'
+NGO_HOLD = 1000000
+
 def Main(args):
 
     print("Do Withdraw Test")
@@ -55,6 +58,11 @@ def Main(args):
             deposit = DepositNeo()
 
             return deposit
+
+        elif operation == 'info':
+            print("Info requested")
+            return Description()
+
     return False
 
 def DepositNeo():
@@ -163,3 +171,6 @@ def CanClaimGas():
             return False
 
     return True
+
+def Description():
+    return NGO_DESCRIPTION
