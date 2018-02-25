@@ -36,6 +36,7 @@ Goodwill Children's Homes is a registered UK charity that works with our partner
   }
 
   render () {
+    console.log(this.props.unclaimed)
     return (
       <section className="section">
         <div className="container">
@@ -83,6 +84,25 @@ Goodwill Children's Homes is a registered UK charity that works with our partner
               <input className="input" type="number"
                      onChange={this.handleHoldChange} value={this.state.hold}/>
             </div>
+          </div>
+
+          <div className="field is-grouped">
+            <div className="control">
+              <button className="button is-link" disabled>Deploy</button>
+            </div>
+          </div>
+
+          <br/>
+
+          <div className="box">
+            <h5 className="title is-5">
+              You have {this.props.unclaimed} unclaimed GAS
+            </h5>
+            <article className="message is-success">
+              <div className="message-body">
+                claim prompt message
+              </div>
+            </article>
           </div>
 
         </div>

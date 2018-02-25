@@ -16,7 +16,8 @@ class App extends React.Component {
     this.state = {
       route: 0,
       block: '...',
-      balance: 0
+      balance: 0,
+      unclaimed: 0
     }
     this.syncBlockchain = this.syncBlockchain.bind(this)
     this.syncContracts = this.syncContracts.bind(this)
@@ -89,7 +90,7 @@ class App extends React.Component {
       body = <Landing key={1} deploy={this.goToDeploy} donate={this.goToDonate} />
     }
     if (this.state.route == 1) {
-      body = <Deploy key={1} />
+      body = <Deploy key={1} unclaimed={this.state.unclaimed} />
     }
     if (this.state.route == 2) {
       body = <Donate key={1} balance={this.state.balance} />
