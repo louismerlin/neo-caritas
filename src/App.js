@@ -1,4 +1,5 @@
 const NGO_ADDRESS = "ANU44juAN2GkmRTEWTu25Jx5umxEhnctB4"
+const NGO_CONTRACT = "0xa89788d15f35efc7a15765113c2776ac5e6e3841"
 const MY_IP = "130.82.239.151"
 
 const hex2a = (hexx) => {
@@ -23,7 +24,8 @@ class App extends React.Component {
     this.syncContracts = this.syncContracts.bind(this)
     this.goToLanding = this.goToLanding.bind(this)
     this.goToDeploy = this.goToDeploy.bind(this)
-    this.goToDonate= this.goToDonate.bind(this)
+    this.goToDonate = this.goToDonate.bind(this)
+    this.getContractData = this.getContractData.bind(this)
   }
 
   goToLanding() {
@@ -38,6 +40,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.syncBlockchain()
+    this.getContractData()
     window.setInterval(this.syncBlockchain, 1*1000)
   }
 
@@ -61,6 +64,17 @@ class App extends React.Component {
       console.log("Connction Error !")
     }
     request.send(JSON.stringify(data))
+  }
+
+  getContractData() {
+    this.createRequest(this.ip(30336), 'POST', res => {
+      const byteCode = res.result.stack[0].value
+      const string = hex2a(byteCode)
+      const object = JSON.parse(string)
+      this.setState({ngo: object})
+    }, {"jsonrpc": "2.0", "method": "invoke", "params":
+          [`${NGO_CONTRACT}`, [{"type": "Array", "value": [{"type": "String",
+                                              "value": "info"}]}]], "id": 1})
   }
 
   syncBlockchain() {
@@ -93,7 +107,7 @@ class App extends React.Component {
       body = <Deploy key={1} unclaimed={this.state.unclaimed} />
     }
     if (this.state.route == 2) {
-      body = <Donate key={1} balance={this.state.balance} />
+      body = <Donate key={1} ngo={this.state.ngo} balance={this.state.balance} />
     }
 
     return (
