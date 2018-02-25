@@ -92,14 +92,6 @@ Goodwill Children's Homes is a registered UK charity that works with our partner
             </div>
           </div>
 
-          <div className="field">
-            <label className="label is-3">Output : Smart Contract Constants</label>
-            <div className="control">
-              <textarea className="textarea"
-                      value={this.generateConstants()} readOnly />
-            </div>
-          </div>
-
           <br/>
 
           <div className="box">
@@ -108,7 +100,7 @@ Goodwill Children's Homes is a registered UK charity that works with our partner
             </h5>
             <article className="message is-primary">
               <div className="message-body">
-                {this.generateConstants()}
+                <textarea className="textarea" value={this.generateConstants()} readOnly/>
               </div>
             </article>
           </div>
